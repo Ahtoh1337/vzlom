@@ -1,0 +1,52 @@
+:root {
+    font-size: 6px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: aliceblue;
+    background-color: darkslategray;
+}
+
+@media screen and (min-width: 500px) {
+    :root {
+      font-size: 10px;
+    }
+  }
+
+div {
+    box-sizing: content-box;
+    border: 1px solid lightgray;
+    font-size: 3rem;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+input,
+button {
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+}
+
+.current-line {
+    background-color: lightcyan;
+}
+
+.current-line:hover {
+    background-color: lightblue;
+}
+
+.completed {
+    color: lightseagreen;
+}
+
+.bad {
+    background-color: darkred;
+}
+
+.okay {
+    background-color: darkgoldenrod;
+}
+
+.good {
+    background-color: darkcyan;
+}

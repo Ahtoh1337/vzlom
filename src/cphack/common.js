@@ -1,0 +1,1 @@
+export const numTextMap = ["55", "1C", "E9", "BD", "7A", "A0", "64", "3F", "V2", "8H"];
