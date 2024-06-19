@@ -14,12 +14,6 @@ div {
     margin: 1rem;
 }
 
-@media screen and (min-width: 500px) {
-    div {
-        font-size: 3rem;
-    }
-}
-
 input,
 button {
     font-size: inherit;
