@@ -1,23 +1,23 @@
-:root {
-    font-size: 6px;
-    font-family: 'Courier New', Courier, monospace;
+html {
+    font-size: 10px;
+    font-family: "Courier New", Courier, monospace;
     font-weight: bold;
     color: aliceblue;
     background-color: darkslategray;
 }
 
-@media screen and (min-width: 500px) {
-    :root {
-      font-size: 10px;
-    }
-  }
-
 div {
     box-sizing: content-box;
     border: 1px solid lightgray;
-    font-size: 3rem;
+    font-size: 1.8rem;
     padding: 1rem;
     margin: 1rem;
+}
+
+@media screen and (min-width: 500px) {
+    div {
+        font-size: 3rem;
+    }
 }
 
 input,
