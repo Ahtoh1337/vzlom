@@ -1,4 +1,4 @@
-import Timer from "./Timer";
+import Timer from "../common/Timer";
 
 function Message({ currentGame, gameStarted, time, onTimeout }) {
   const init = 0;
@@ -21,11 +21,11 @@ function Message({ currentGame, gameStarted, time, onTimeout }) {
     return className;
   }
   return (
-    <div className={getClass()}>
+    <div className={"block content " + getClass()}>
       {gameStarted ? (
-        <Timer startTime={time} onTimeout={onTimeout} />
+        <Timer startTime={time} onTimeout={onTimeout} text={"breach time remaining:"}/>
       ) : (
-        `Completed: ${completed}/${currentGame.sequences.length}`
+        `completed: ${completed}/${currentGame.sequences.length}`
       )}
     </div>
   );

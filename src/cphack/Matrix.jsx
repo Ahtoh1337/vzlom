@@ -1,4 +1,4 @@
-import { numTextMap } from "./common";
+import { numTextMap } from "../utils";
 
 function Matrix({ currentGame, gameStarted, onCellButtonClicked }) {
   let r = 0;
@@ -31,16 +31,23 @@ function Matrix({ currentGame, gameStarted, onCellButtonClicked }) {
 
     let newBufferIndex = currentGame.bufferIndex + 1;
 
-    let finishGame = newBufferIndex >= newBuffer.length || currentGame.sequences.every(seq => newBuffer.join(' ').includes(seq.join(' ')));
+    let finishGame =
+      newBufferIndex >= newBuffer.length ||
+      currentGame.sequences.every((seq) =>
+        newBuffer.join(" ").includes(seq.join(" "))
+      );
 
-    onCellButtonClicked({
-      ...currentGame,
-      isRow: newIsRow,
-      line: newLine,
-      clickedCells: newClickedCells,
-      buffer: newBuffer,
-      bufferIndex: newBufferIndex,
-    }, finishGame);
+    onCellButtonClicked(
+      {
+        ...currentGame,
+        isRow: newIsRow,
+        line: newLine,
+        clickedCells: newClickedCells,
+        buffer: newBuffer,
+        bufferIndex: newBufferIndex,
+      },
+      finishGame
+    );
   }
 
   function displayCellText(col, r, c) {
@@ -60,33 +67,36 @@ function Matrix({ currentGame, gameStarted, onCellButtonClicked }) {
   }
 
   return (
-    <div>
-      <table>
-        <tbody>
-          {currentGame.matrix.map((row) => {
-            let c = -1;
-            return (
-              <tr key={++r}>
-                {row.map((col) => {
-                  let key = `${r} ${++c}`;
-                  return (
-                    <td key={key}>
-                      <button
-                        id={key}
-                        disabled={!isCellEnabled(r, c)}
-                        onClick={(e) => onCellClicked(e.currentTarget.id)}
-                        className={setCellClass(r, c)}
-                      >
-                        {displayCellText(col, r, c)}
-                      </button>
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    <div className="block matrix">
+    <div className="header">code matrix</div>
+      <div className="table-container">
+        <table>
+          <tbody>
+            {currentGame.matrix.map((row) => {
+              let c = -1;
+              return (
+                <tr key={++r}>
+                  {row.map((col) => {
+                    let key = `${r} ${++c}`;
+                    return (
+                      <td key={key}>
+                        <button
+                          id={key}
+                          disabled={!isCellEnabled(r, c)}
+                          onClick={(e) => onCellClicked(e.currentTarget.id)}
+                          className={"cell-button " + setCellClass(r, c)}
+                        >
+                          {displayCellText(col, r, c)}
+                        </button>
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function Timer({ startTime, onTimeout }) {
+function Timer({ startTime, onTimeout, text }) {
   const [timeLeft, setTimeLeft] = useState(startTime);
   useEffect(() => {
     const id = setInterval(() => {
@@ -11,7 +11,7 @@ function Timer({ startTime, onTimeout }) {
     return () => clearInterval(id);
   });
 
-  return <>Time left:{" "}{timeLeft}</>
+  return <>{text}{" "}{Math.floor(timeLeft / 60)}m {timeLeft % 60}s</>
 }
 
 export default Timer;

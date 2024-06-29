@@ -3,7 +3,9 @@ import SeqBuffer from "./SeqBuffer";
 import Matrix from "./Matrix";
 import Sequence from "./Sequence";
 import Message from "./Message";
+import { randInt, weightedRandInt, shuffleArray } from "../utils";
 import { useState, useEffect } from "react";
+import "./cphack.css";
 
 function CpHackGame() {
   const [settings, setSettings] = useState({
@@ -94,7 +96,12 @@ function CpHackGame() {
       if (settings.lengthFavor == 0) {
         length = randInt(maxLength + 1, 2);
       } else {
-        length = weightedRandInt(maxLength + 1, 2, Math.abs(settings.lengthFavor), settings.lengthFavor < 0);
+        length = weightedRandInt(
+          maxLength + 1,
+          2,
+          Math.abs(settings.lengthFavor),
+          settings.lengthFavor < 0
+        );
       }
 
       if (start + length >= mainSequence.length) {
@@ -115,40 +122,8 @@ function CpHackGame() {
     return sequences;
   }
 
-  function randInt(max, min = 0) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-  function weightedRandInt(max, min = 0, weightFactor = 1, favorLower = true) {
-    const weights = [...Array(max - min)].map((_, i) =>
-      favorLower ? 1 / (i + 1) ** weightFactor : (i + 1) ** weightFactor
-    );
-    const totalWeight = weights.reduce((acc, val) => acc + val, 0);
-    const normalizedWeights = weights.map((val) => val / totalWeight);
-
-    const rand = Math.random();
-
-    let sum = 0;
-
-    for (let i = 0; i < max - min; i++) {
-      sum += normalizedWeights[i];
-      if (sum >= rand) {
-        return i + min;
-      }
-    }
-
-    return max - 1 + min;
-  }
-
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-  }
-
   return (
-    <>
+    <div id="cphack">
       <Settings
         settings={settings}
         onChange={(newSettings) => setSettings(newSettings)}
@@ -161,23 +136,25 @@ function CpHackGame() {
           setGameStarted(!gameStarted);
         }}
       />
-      <SeqBuffer currentGame={currentGame} gameStarted={gameStarted} />
-      <Matrix
-        currentGame={currentGame}
-        gameStarted={gameStarted}
-        onCellButtonClicked={(game, finish) => {
-          setCurrentGame(game);
-          if (finish) finishGame();
-        }}
-      />
-      <Sequence currentGame={currentGame} gameStarted={gameStarted} />
+      <div className="matrix-buffer-seq-container">
+        <Matrix
+          currentGame={currentGame}
+          gameStarted={gameStarted}
+          onCellButtonClicked={(game, finish) => {
+            setCurrentGame(game);
+            if (finish) finishGame();
+          }}
+        />
+        <SeqBuffer currentGame={currentGame} gameStarted={gameStarted} />
+        <Sequence currentGame={currentGame} gameStarted={gameStarted} />
+      </div>
       <Message
         currentGame={currentGame}
         gameStarted={gameStarted}
         time={settings.duration}
         onTimeout={() => finishGame()}
       />
-    </>
+    </div>
   );
 }
 

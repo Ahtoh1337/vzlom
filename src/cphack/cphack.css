@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
+
+.major-mono-display-regular {
+    font-family: "Major Mono Display", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    --cp-main: rgb(206, 236, 88);
+    --cp-sec: rgb(17, 14, 21);
+    --cp-sec-2: rgb(40, 46, 58);
+    --cp-sec-3: rgb(33, 33, 25);
+    --cp-hover: rgb(134, 227, 232);
+    --cp-good: rgb(28, 213, 119);
+    --cp-bad: rgb(215, 82, 85);
+}
+
+#cphack {
+    font-family: "Major Mono Display", Courier, monospace;
+    font-size: 0.8rem;
+    background-color: var(--cp-sec);
+    color: var(--cp-main);
+    font-weight: bold;
+    line-height: 1.2rem;
+}
+
+#cphack .block {
+    margin: 0.2rem;
+    border: 2px solid var(--cp-main);
+}
+
+.matrix-buffer-seq-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.matrix {
+    grid-row: 1 / 3;
+}
+
+.table-container {
+    height: calc(100% - 2.2rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    color: var(--cp-sec);
+    background-color: var(--cp-main);
+}
+
+.content, .header {
+    padding: 0.5rem;
+}
+
+.seq {
+    padding: 0.6rem;
+    background-color: var(--cp-sec-3);
+    margin: 0.5rem;
+}
+
+.seq.completed {
+    color: var(--cp-sec);
+    background-color: var(--cp-good);
+}
+
+#cphack .good {
+    color: var(--cp-sec);
+    background-color: var(--cp-good);
+    border-color: var(--cp-good);
+}
+
+#cphack .bad {
+    color: var(--cp-sec);
+    background-color: var(--cp-bad);
+    border-color: var(--cp-bad);
+}
+
+#cphack .okay {
+    color: var(--cp-sec);
+    background-color: var(--cp-main);
+    border-color: var(--cp-main);
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    padding: 0;
+}
+
+.cell-button {
+    font: inherit;
+    color: var(--cp-main);
+    border: none;
+    background: none;
+    padding: .5rem;
+}
+
+#cphack input[type="button"] {
+    font: inherit;
+    color: var(--cp-sec);
+    border: none;
+    padding: .2rem .8rem;
+    background-color: var(--cp-main);
+}
+
+#cphack input[type="button"]:hover {
+    background-color: var(--cp-hover);
+}
+
+.current-line {
+    background-color: var(--cp-sec-2);
+    color: var(--cp-hover);
+}
+
+.current-line:hover {
+    color: var(--cp-sec-2);
+    background-color: var(--cp-hover);
+}
+
+@media screen and (max-width: 600px) {
+    .matrix-buffer-seq-container {
+        display: block;
+    }
+}

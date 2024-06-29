@@ -1,4 +1,4 @@
-import { numTextMap } from "./common";
+import { numTextMap } from "../utils";
 
 function Sequence({ currentGame, gameStarted }) {
     let i = 0;
@@ -8,10 +8,11 @@ function Sequence({ currentGame, gameStarted }) {
         return currentGame.buffer.join(" ").includes(seq.join(" ")) ? "completed" : "";
     }
   return (
-    <div>
-      <ul>
-        {currentGame.sequences.map(seq => <li key={i++} className={getClass(seq)}>{seq.map(n => numTextMap[n]).join(" ")}</li>)}
-      </ul>
+    <div className="block">
+    <div className="header">sequence required to upload</div>
+      <div>
+        {currentGame.sequences.map(seq => <div key={i++} className={"seq " + getClass(seq)}>{seq.map(n => numTextMap[n]).join(" ")}</div>)}
+      </div>
     </div>
   );
 }
